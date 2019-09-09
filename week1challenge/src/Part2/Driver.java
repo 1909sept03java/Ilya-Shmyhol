@@ -1,12 +1,15 @@
 package Part2;
 
 public class Driver {
+
+	Utility ut = new Utility();
+
 	public static void main(String[] args) {
-		Utility ut=new Utility();
-		String bank[]= {"AACCGGTA", "AACCGCTA", "AAACGGTA"};
-		
-		System.out.println(ut.validator("AACCGGTT","AAACGGTA",bank));
-		
-		
+
+	}
+
+	public void pass(String original, String mutated, String[] bank) {
+		String bank1[]= {"AACCGGTA", "AACCGCTA", "AAACGGTA"};
+		ut.validator("AACCGGTT","AAACGGTA",bank1);
 	}
 }
