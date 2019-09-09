@@ -23,7 +23,7 @@ public class Utility {
 		return 0;
 
 	}
-
+	// should work out a best path and keep track of mutated string history(Maybe queue?) 
 	private void mutationPath(String original, String mutated, String[] bank) {
 		String nextGuessPath;
 		String currentGuessPath = original;
