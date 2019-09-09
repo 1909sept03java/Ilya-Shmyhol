@@ -5,6 +5,8 @@ public class Driver {
 		Utility ut=new Utility();
 		String bank[]= {"AACCGGTA", "AACCGCTA", "AAACGGTA"};
 		
-		ut.validator("AACCGGTT","AAACGGTA",bank);
+		System.out.println(ut.validator("AACCGGTT","AAACGGTA",bank));
+		
+		
 	}
 }
