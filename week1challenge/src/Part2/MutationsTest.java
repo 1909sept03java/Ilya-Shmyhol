@@ -33,7 +33,7 @@ class MutationsTest {
 		String bank[]= {"AACCGGTA", "AACCGCTA", "AAACGGTA"};
 		
 		
-		d.pass("AACCGGTT","AAACGGTA",bank);
+		//d.pass("AACCGGTT","AAACGGTA",bank);
 		
 		
 		

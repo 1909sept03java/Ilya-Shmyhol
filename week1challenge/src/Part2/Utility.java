@@ -15,16 +15,16 @@ public class Utility {
 		if (mutations > 0) {
 			found = testBank(mutated, bank);
 			if (found == true) {
-				mutationPath(orginal, mutated, bank);
+				return mutationPath(orginal, mutated, bank,mutations);
 			} else
 				return -1;
 		} else
 			return 0;
-		return 0;
 
 	}
 	// should work out a best path and keep track of mutated string history(Maybe queue?) 
-	private void mutationPath(String original, String mutated, String[] bank) {
+	private int mutationPath(String original, String mutated, String[] bank,int diffs) {
+		int path=0;
 		String nextGuessPath;
 		String currentGuessPath = original;
 		for (int i = 0; i < bank.length; i++) {
@@ -35,6 +35,7 @@ public class Utility {
 
 					if (testBank(nextGuessPath, bank)) {
 						currentGuessPath = nextGuessPath;
+						path++;
 
 					}
 					System.out.println(currentGuessPath);
@@ -43,6 +44,7 @@ public class Utility {
 			}
 
 		}
+		return path;
 	}
 
 	
