@@ -84,9 +84,11 @@ public class TransactionDAOImpl implements TransactionDAO {
 
 			String sql = "UPDATE ACCOUNTS SET BALANCE=? WHERE ACCOUNT_ID=?  ";
 			PreparedStatement pstmt = con.prepareStatement(sql);
-			pstmt.setInt(2, 11);
-			pstmt.setDouble(1, 5);
+			pstmt.setInt(2, accountID);
+			pstmt.setDouble(1, balance);
+			System.out.println("here1");
 			pstmt.executeUpdate();
+			System.out.println("here2");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
