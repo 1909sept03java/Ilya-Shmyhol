@@ -1,9 +1,12 @@
 package com.revature.dao;
 
+import com.revature.exceptions.OverdraftException;
+
 public interface TransactionDAO {
-	int deposit(int userID,int accountID);
-	
-	int withdraw(int userID,int accountID);
-	
-	int getBalance(int userID,int accountID);
+	public int deposit(int userID, int accountID, double money);
+
+	public int withdraw(int userID, int accountID, double money) throws OverdraftException;
+
+	public double getBalance(int userID, int accountID);
+
 }
