@@ -118,7 +118,7 @@ public class Driver {
 				break;
 			}
 			System.out.println("More actions? (y/n)");
-			moreActions = userIn.nextLine();
+			moreActions = userIn.next();
 			if (!moreActions.equals("y")) {
 				System.out.println("Goodbye!");
 			}
