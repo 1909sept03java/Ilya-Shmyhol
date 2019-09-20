@@ -23,18 +23,21 @@ public class Driver {
 		int accountID = -1, action, userID = 0;
 		double money = 0;
 		String moreActions;
-		boolean loggedin = false;
+		boolean loggedin = false, accountMade = false;
 
 		// username input
 		Scanner userIn = new Scanner(System.in);
-		System.out.println("Login or press enter to make a new user");
+		System.out.println("Login or enter 1 to make a new user");
 		String username = userIn.nextLine();
 		while (!loggedin) {
-			if (username.isEmpty()) {
+			if (username.isEmpty() && accountMade == false) {
 				userID = acc.makeUser();
+				accountMade = true;
+				System.out.println("Login or press enter to make a new account");
+				username = userIn.next();
 			} else if (acc.usernameExists(username)) {
 				System.out.println("Enter password");
-				String password = userIn.nextLine();
+				String password = userIn.next();
 				if (-1 != acc.passwordMatches(username, password)) {
 					userID = acc.getUser(username, password);
 					user.setPassword(password);
@@ -44,17 +47,18 @@ public class Driver {
 				} else {
 					System.out.println("Password does not match username");
 					System.out.println("Login or press enter to make a new account");
-					username = userIn.nextLine();
+					username = userIn.next();
 				}
-			} else {
+			} else if (!acc.usernameExists(username)) {
 				System.out.println("Username you entered does not exist");
-				System.out.println("Login or press enter to make a new account");
-				username = userIn.nextLine();
+				username = "";
+			} else {
+
 			}
 
 		}
 		System.out.println("Would you like to make a new account?(y/n)");
-		moreActions = userIn.nextLine();
+		moreActions = userIn.next();
 		if (moreActions.equals("y")) {
 			acc.addAccount(user.getUserID());
 		}
@@ -63,7 +67,7 @@ public class Driver {
 		accountID = userIn.nextInt();
 		account.setAccountID(accountID);
 		moreActions = "y";
-		
+
 		while (moreActions.equals("y") || moreActions.equals("Y")) {
 
 			if (user.getUserID() == 1022) {
@@ -118,7 +122,7 @@ public class Driver {
 			}
 			System.out.println("More actions? (y/n)");
 			moreActions = userIn.next();
-			if (!moreActions.equals("y")) {
+			if (!moreActions.equals("y")||acc==null) {
 				System.out.println("Goodbye!");
 			}
 		}

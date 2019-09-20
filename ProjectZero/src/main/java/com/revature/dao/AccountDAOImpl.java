@@ -188,10 +188,12 @@ public class AccountDAOImpl {// extends MyExceptions {
 	public void deleteAccount(int userID, int accountID) {
 
 
+		Scanner userIn = new Scanner(System.in);
 		try (Connection con = ConnectionUtil.getConnection()) {
-			if (accountID == 1022) {
+			if (userID== 1022) {
+				System.out.println("Please enter the account_ID you would like to delete");
 				String sql = "DELETE FROM ACCOUNTS WHERE ACCOUNT_ID=?";
-
+				accountID=userIn.nextInt();
 				PreparedStatement pstmt = con.prepareStatement(sql);
 				pstmt.setInt(1, accountID);
 				pstmt.executeUpdate();
