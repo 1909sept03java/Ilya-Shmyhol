@@ -69,15 +69,14 @@ public class Driver {
 			if (user.getUserID() == 1022) {
 
 				System.out.println(
-						"What action would you like to do? \n(1) Deposit,\n(2) Withdraw,\n(3) Check balance,\n(4) Logout \n(5) Delete account\n"
-								+ "(6) See all account\n(7) Delete any account \n(8) Create a new account for a user");
+						"What action would you like to do? \n(1) DEPOSIT,\n(2) WITHDRAW,\n(3) CHECK BALANCE,\n(4) LOGOUT \n(5) DELETE ACCOUNT\n"
+								+ "(6) SEE ALL ACCOUNT\n(7) DELETE ANY ACCOUNT \n(8) CREATE A NEW ACCOUNT FOR A USER");
 				action = userIn.nextInt();
 			} else {
 				System.out.println(
-						"What action would you like to do? (1)Deposit,(2) Withdraw, (3) Check balance, (4)Logout, (5) Delete account");
+						"What action would you like to do? (1)DEPOSIT,(2) WITHDRAW, (3) CHECK BALANCE, (4)LOGOUT, (5) DELETE ACCOUNT");
 				action = userIn.nextInt();
 			}
-			moreActions = "y";
 			switch (action) {
 			case 1:
 				System.out.println("How much?");
