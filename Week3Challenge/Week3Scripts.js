@@ -24,7 +24,9 @@ function sendAjaxGet(url,func){
 xhr.open("GET",url,true);
 xhr.send();
 */
-function createNode(element) {
+window.onload=function(){
+    document.getElementById("user").onclick=function(){
+    function createNode(element) {
     return document.createElement(element);
 }
 
