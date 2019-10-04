@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Profile</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+	<div class="display">
+		<h1>WELCOME</h1>
+		<h1>
+			<p id="name"></p>
+		</h1>
+
+		<div class="display">
+			<br> <br>
+			<h2>Information</h2>
+			<p id="email">Email:</p>
+			<p id="id">Employee Identification number:</p>
+
+		</div>
+	</div>
+
+	<div>
+		<h2>Reimbursements:</h2>
+		<button id="getInfo">View Pending Reimbursements!</button>
+		<br>
+		<div id="reimbursements-submitted"></div>
+		
+		<button id="getInfoC">View Completed Reimbursements!</button>
+		<br>
+		<div id="reimbursements-completed"></div>
+
+		<h2>Request a Reimbursement:</h2>
+		<form action="createReim" method="POST">
+			<input type="text" value="0" name="reimBal"> <input
+				type="submit" value="Create Reim!" />
+				
+		</form>
+		<h2>Request a Change Information</h2>
+		
+		<form action="changeInfo" method="POST">
+			<input type= "text" value="First Name" name="changeFirstname"></input>
+			<input type="checkbox" value="Change First Name" name="changeFirstnameCheck" />
+		<br>
+			<input type= "text" value="Last Name" name="changeLastname"></input>
+			<input type="checkbox" value="Change Last Name" name="changeLastnameCheck"/>
+		<br>
+			<input type= "text" value="Password" name="changePassword"></input>
+			<input type="checkbox" value="Change Password" name="changePasswordCheck" />
+		<br>
+			<input type= "text" value="E-Mail" name="changeEmail"></input>
+			<input type="checkbox" value="Change E-Mail" name="changeEmailCheck"/>
+		<br>	
+			 <input
+				type="submit" value="Update Information" />
+		</form>
+		
+	</div>
+
+	<form action="logout" method="get">
+		<input type="submit" value="logout" />
+	</form>
+</body>
+<script src="check.js"></script>
+</html>
