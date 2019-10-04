@@ -18,7 +18,7 @@ public class ProfileServlet extends HttpServlet {
 
 		if (session != null && session.getAttribute("userId") != null) {
 			if (Integer.parseInt(session.getAttribute("mangId").toString()) < 3) {
-				req.getRequestDispatcher("MangerProfile.html").forward(req, resp);
+				req.getRequestDispatcher("ManagerProfile.html").forward(req, resp);
 			}
 			else
 			req.getRequestDispatcher("Profile.html").forward(req, resp);

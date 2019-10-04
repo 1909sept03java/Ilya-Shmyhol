@@ -28,7 +28,7 @@ public class ApproveReimbursementServlet extends HttpServlet{
 		System.out.println(Double.parseDouble(req.getParameter("reimId")));
 		System.out.println(Integer.parseInt(session.getAttribute("mangId").toString()));
 		
-		reim.approveReimbursements(Integer.parseInt(req.getParameter("remId")),
+		reim.approveReimbursements(Integer.parseInt(req.getParameter("reimId").toString()),
 				Integer.parseInt(session.getAttribute("mangId").toString()));
 			req.getRequestDispatcher("ManagerProfile.html").forward(req, resp);
 		

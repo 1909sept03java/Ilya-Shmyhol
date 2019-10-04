@@ -9,7 +9,7 @@
 	crossorigin="anonymous">
 <style>
 body {
-	background-color: red;
+	background-image: url(background.jpg);
 }
 </style>
 <link rel="stylesheet" href="styles.css">
@@ -18,16 +18,17 @@ body {
 	<div class="display">
 		<!-- action attribute is the form handler -->
 		<!-- method attribute is the HTTP method to be used -->
-		<form action="login" method="POST">
-			<fieldset>
+		<form class="form-singin" action="login" method="POST">
+		<img class="mb-4" src="logo.png" alt="" width="200" height="200">
+			<fieldset><input type="text" id="inputEmail" class="form-control" placeholder="Username" required="" autofocus="" name="username" >
 				<legend>Username:</legend>
-				<input required autocomplete="off" name="username" />
 			</fieldset>
-			<fieldset>
+			
+			<fieldset><input type="password" id="inputEmail" class="form-control" placeholder="Password" required="" autofocus="" name="password" >
 				<legend>Password:</legend>
-				<input required autocomplete="off" type="password" name="password" />
 			</fieldset>
-			<br> <input type="submit" value="login" />
+				<br><input class="btn btn-lg btn-primary btn-block" type="submit" value="Login"></input>
+			
 		</form>
 	</div>
 </body>

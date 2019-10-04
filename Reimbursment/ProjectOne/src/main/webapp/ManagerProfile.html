@@ -6,6 +6,11 @@
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="styles.css">
+<style>
+body {
+	background-image: url(background.jpg);
+}
+</style>
 </head>
 <body>
 	<div class="display">
@@ -16,14 +21,15 @@
 
 		<div class="display">
 			<br> <br>
-			<h2>Information</h2>
+			<h2>Information:</h2>
 			<p id="email">Email:</p>
 			<p id="id">Employee Identification number:</p>
 
 		</div>
 	</div>
 
-	<div>
+	<div style="background-color: #89abc6; padding: 1rem; margin: 1rem;"
+		align="left">
 		<h2>Reimbursements:</h2>
 		<button id="getInfo">View Pending Reimbursements!</button>
 		<br>
@@ -40,15 +46,15 @@
 
 		</form>
 	</div>
-		<div>
+	<div style="background-color: #89abc6; padding: 1rem; margin: 1rem;">
 		<h2>Reimbursements:</h2>
-		<button id="getInfo">View All Pending Reimbursements!</button>
+		<button id="getInfoMang">View All Pending Reimbursements!</button>
 		<br>
-		<div id="reimbursements-submitted"></div>
+		<div id="all-reimbursements-submitted"></div>
 
-		<button id="getInfoC">View All Completed Reimbursements!</button>
+		<button id="getInfoCMang">View All Completed Reimbursements!</button>
 		<br>
-		<div id="reimbursements-completed"></div>
+		<div id="all-reimbursements-completed"></div>
 
 		<h2>Accept a Reimbursement:</h2>
 		<form action="approveReim" method="POST">
@@ -57,7 +63,8 @@
 
 		</form>
 	</div>
-	<div>
+		<div style="background-color: #89abc6; padding: 1rem; margin: 1rem;">
+
 		<h2>Request a Change Information</h2>
 
 		<form action="changeInfo" method="POST">
