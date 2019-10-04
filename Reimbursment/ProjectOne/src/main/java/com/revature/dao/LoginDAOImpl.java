@@ -46,7 +46,7 @@ public class LoginDAOImpl implements LoginDAO {
 			ResultSet rs = pstmt.executeQuery();
 			if (rs.next()) {
 				employee.setId(rs.getInt("EMPLOYEE_ID"));
-
+				employee.setMangId(rs.getInt("MANAGER_ID"));
 				employee.setFirstname(rs.getString("FIRSTNAME"));
 				employee.setLastname(rs.getString("LASTNAME"));
 				employee.setEmail(rs.getString("EMAIL"));

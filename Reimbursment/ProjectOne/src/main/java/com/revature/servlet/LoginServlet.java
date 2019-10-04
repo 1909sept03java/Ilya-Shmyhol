@@ -3,6 +3,7 @@ package com.revature.servlet;
 import java.io.IOException;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 //import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -13,9 +14,9 @@ import com.revature.beans.EmployeeCredentials;
 import com.revature.beans.EmployeeInfo;
 import com.revature.service.AuthenticationService;
 
-//@WebServlet("/Login")
+@WebServlet("/login")
 public class LoginServlet extends HttpServlet {
-	
+
 	private AuthenticationService authService = new AuthenticationService();
 	private static final long serialVersionUID = 817105812389880890L;
 
@@ -27,26 +28,27 @@ public class LoginServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// serve the login.html page as a response
-		// RequestDispatcher is used to perform a 'forward' 
+		// RequestDispatcher is used to perform a 'forward'
 		// (pass the request to another resource without the client knowing)
-		//resp.getWriter().write("hello world");
+		// resp.getWriter().write("hello world");
 		req.getRequestDispatcher("Login.html").forward(req, resp);
 	}
-	
+
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-	
+
 		HttpSession session = req.getSession();
 		EmployeeCredentials creds = new EmployeeCredentials();
 		creds.setUsername(req.getParameter("username"));
 		creds.setPassword(req.getParameter("password"));
 		EmployeeInfo u = authService.authenticateUser(creds);
 		resp.getWriter().write(creds.getPassword());
-		
+
 		if (u != null) {
 
-
 			session.setAttribute("userId", u.getId());
+			session.setAttribute("mangId", u.getMangId());
+
 			session.setAttribute("firstname", u.getFirstname());
 			session.setAttribute("lastname", u.getLastname());
 			session.setAttribute("email", u.getEmail());
@@ -54,6 +56,7 @@ public class LoginServlet extends HttpServlet {
 			session.setAttribute("username", creds.getUsername());
 
 			session.setAttribute("problem", null);
+			
 			resp.sendRedirect("profile");
 		} else {
 			session.setAttribute("problem", "invalid credentials");

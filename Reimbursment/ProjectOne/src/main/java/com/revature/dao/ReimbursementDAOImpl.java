@@ -13,7 +13,41 @@ import com.revature.service.ConnectionService;
 
 public class ReimbursementDAOImpl implements ReimbursementDAO {
 
-	public List<Reimbursement> getReimbursements() {
+	public void approveReimbursements(int mangId, int reimbursementId) {
+		try (Connection con = ConnectionService.getConnection();) {
+			int employeeId = 0;
+			double reimbursementBalance = 0;
+
+			String sql = "SELECT * FROM REIMBURSEMENT WHERE REIMBURSEMENT_ID VALUES(?)";
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setInt(1, reimbursementId);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				reimbursementBalance = rs.getDouble("BALANCE");
+				employeeId = rs.getInt("EMPLOYEE_ID");
+			}
+
+			sql = "INSERT INTO RESOLVED_REIMBURSEMENTS(BALANCE, EMPLOYEE_ID, RESOLVED_BY) VALUES(?,?,?) ";
+			PreparedStatement ps2 = con.prepareStatement(sql);
+			ps2.setDouble(1, reimbursementBalance);
+			ps2.setInt(2, employeeId);
+			ps2.setInt(3, mangId);
+			ps2.executeUpdate();
+			
+			sql= "DELETE FROM REIMBURSEMENT WHERE REIMBURSEMENT_ID VALUES(?)";
+			PreparedStatement ps3 = con.prepareStatement(sql);
+			ps3.setInt(1, reimbursementId);
+			ps3.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	public List<Reimbursement> getAllReimbursements() {
 
 		List<Reimbursement> reimList = new ArrayList<Reimbursement>();
 		try (Connection con = ConnectionService.getConnection();) {
@@ -36,7 +70,8 @@ public class ReimbursementDAOImpl implements ReimbursementDAO {
 
 		return reimList;
 	}
-	public List <Reimbursement> getReimbursementsOfEmployee(int employeeId){
+
+	public List<Reimbursement> getReimbursementsOfEmployee(int employeeId) {
 		System.out.println(employeeId);
 		List<Reimbursement> reimList = new ArrayList<Reimbursement>();
 		try (Connection con = ConnectionService.getConnection();) {
@@ -44,12 +79,11 @@ public class ReimbursementDAOImpl implements ReimbursementDAO {
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setInt(1, employeeId);
 			ResultSet rs = ps.executeQuery();
-			//System.out.println(reimList.toString());
+			// System.out.println(reimList.toString());
 			while (rs.next()) {
 				int reimbursementId = rs.getInt("REIMBURSEMENT_ID");
 				double reimbursementBalance = rs.getDouble("BALANCE");
-				reimList.add(
-						new Reimbursement(reimbursementId, reimbursementBalance, employeeId));
+				reimList.add(new Reimbursement(reimbursementId, reimbursementBalance, employeeId));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -61,6 +95,7 @@ public class ReimbursementDAOImpl implements ReimbursementDAO {
 
 		return reimList;
 	}
+
 	public void createReimbursements(double balance, int employeeId) {
 		try (Connection con = ConnectionService.getConnection();) {
 			String sql = "INSERT INTO REIMBURSEMENT(BALANCE, EMPLOYEE_ID) VALUES(?,?)";

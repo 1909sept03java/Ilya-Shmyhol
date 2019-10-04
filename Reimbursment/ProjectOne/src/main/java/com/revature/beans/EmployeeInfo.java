@@ -15,9 +15,11 @@ public class EmployeeInfo {
 	}
 
 	private int id;
+	private int mangId;
 	private String firstname;
 	private String lastname;
 	private String email;
+	
 
 	public int getId() {
 		return id;
@@ -95,6 +97,14 @@ public class EmployeeInfo {
 	public String toString() {
 		return "EmployeeInfo [id=" + id + ", firstname=" + firstname + ", lastname=" + lastname + ", email=" + email
 				+ "]";
+	}
+
+	public int getMangId() {
+		return mangId;
+	}
+
+	public void setMangId(int mangId) {
+		this.mangId = mangId;
 	}
 
 

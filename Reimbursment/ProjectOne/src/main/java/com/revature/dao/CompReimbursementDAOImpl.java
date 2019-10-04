@@ -13,7 +13,7 @@ import com.revature.service.ConnectionService;
 
 public class CompReimbursementDAOImpl {
 
-	public List<Reimbursement> getReimbursementsOfEmployee(int employeeId) {
+	public List<Reimbursement> getCompReimbursementsOfEmployee(int employeeId) {
 		System.out.println(employeeId);
 		List<Reimbursement> reimList = new ArrayList<Reimbursement>();
 		try (Connection con = ConnectionService.getConnection();) {
@@ -27,6 +27,31 @@ public class CompReimbursementDAOImpl {
 				int reimbursementId = rs.getInt("REIMBURSEMENT_ID");
 				double reimbursementBalance = rs.getDouble("BALANCE");
 				reimList.add(new Reimbursement(reimbursementId, reimbursementBalance, employeeId));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return reimList;
+	}
+	public List <Reimbursement> getCompReimbursementsOfAllEmployees(){
+		List<Reimbursement> reimList = new ArrayList<Reimbursement>();
+		try (Connection con = ConnectionService.getConnection();) {
+			String sql = "SELECT * FROM RESOLVED_REIMBURSEMENTS";
+			PreparedStatement ps = con.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			//System.out.println(reimList.toString());
+			while (rs.next()) {
+				int employeeId = rs.getInt("EMPLOYEE_ID");
+
+				int reimbursementId = rs.getInt("REIMBURSEMENT_ID");
+				double reimbursementBalance = rs.getDouble("BALANCE");
+				reimList.add(
+						new Reimbursement(reimbursementId, reimbursementBalance, employeeId));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

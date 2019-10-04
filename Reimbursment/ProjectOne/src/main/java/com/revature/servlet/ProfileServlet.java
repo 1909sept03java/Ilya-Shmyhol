@@ -15,8 +15,13 @@ public class ProfileServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession session = req.getSession(false);
+
 		if (session != null && session.getAttribute("userId") != null) {
-				req.getRequestDispatcher("Profile.html").forward(req, resp);
+			if (Integer.parseInt(session.getAttribute("mangId").toString()) < 3) {
+				req.getRequestDispatcher("MangerProfile.html").forward(req, resp);
+			}
+			else
+			req.getRequestDispatcher("Profile.html").forward(req, resp);
 		} else {
 			resp.sendRedirect("login");
 		}

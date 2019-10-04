@@ -7,7 +7,7 @@ import com.revature.beans.Reimbursement;
 
 
 public interface ReimbursementDAO {
-	public List<Reimbursement> getReimbursements();
+	public List<Reimbursement> getAllReimbursements();
 
 	public List<Reimbursement> getReimbursementsOfEmployee(int employeeId);
 	

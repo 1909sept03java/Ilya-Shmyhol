@@ -27,7 +27,7 @@ public class CompReimbursementServlet  extends HttpServlet {
 
 			
 			CompReimbursementDAOImpl comp = new CompReimbursementDAOImpl();
-			List<Reimbursement> reimbList = comp.getReimbursementsOfEmployee(Integer.parseInt(session.getAttribute("userId").toString()));
+			List<Reimbursement> reimbList = comp.getCompReimbursementsOfEmployee(Integer.parseInt(session.getAttribute("userId").toString()));
 			resp.getWriter().write((new ObjectMapper()).writeValueAsString(reimbList));
 
 		} catch (Exception e) {
